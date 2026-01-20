@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Dashboard - SoCFA</title>
+    <link rel="stylesheet" href="soil.css"> <!-- Use same CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="desktop-container">
+        <!-- Header (Same as other dashboards) -->
+        <header class="main-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-tractor"></i></span>
+                    <span class="logo-text">SoCFA</span>
+                </div>
+                <div class="tagline">For Farmers</div>
+            </div>
+            <div class="header-center">
+                <h1>SmartFarm Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="current-time" id="current-time">Loading...</div>
+                <button class="refresh-btn" id="refresh-all">
+                    <i class="fas fa-sync-alt"></i> Refresh All
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content-area">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="navigation-section">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-compass"></i> Navigation
+                    </h3>
+                    <nav class="nav-menu">
+                        <a href="dashboard.html" class="nav-item active">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="ndvi.html" class="nav-item">
+                            <i class="fas fa-map"></i>
+                            <span>NDVI Map</span>
+                        </a>
+                        <a href="soil.html" class="nav-item">
+                            <i class="fas fa-seedling"></i>
+                            <span>Soil Condition</span>
+                        </a>
+                        <a href="recommendation.html" class="nav-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Recommendations</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Quick Farm Info -->
+                <div class="weather-section">
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-info-circle"></i> Farm Summary
+                    </h3>
+                    <div class="weather-card" style="background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);">
+                        <div class="weather-icon">
+                            <i class="fas fa-farm"></i>
+                        </div>
+                        <div class="weather-info">
+                            <div class="weather-temp" id="farm-size">25.3 ha</div>
+                            <div class="weather-desc">Total Farm Area</div>
+                            <div class="weather-humidity">Active Fields: 3/4</div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast">
+                        <div class="forecast-day">
+                            <span>Last NDVI Scan</span>
+                            <i class="fas fa-calendar"></i>
+                            <span id="last-ndvi-scan">Today</span>
+                        </div>
+                        <div class="forecast-day">
+                            <span>Soil Last Check</span>
+                            <i class="fas fa-clock"></i>
+                            <span id="last-soil-check">2h ago</span>
+                        </div>
+                        <div class="forecast-day">
+                            <span>System Uptime</span>
+                            <i class="fas fa-server"></i>
+                            <span id="system-uptime">99.8%</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Dashboard Panel -->
+            <main class="main-panel">
+                <!-- Overview Section -->
+                <section class="parameters-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-chart-pie"></i> Farm Overview
+                        </h2>
+                        <div class="time-filter">
+                            <span class="filter-label">View:</span>
+                            <select id="dashboard-view">
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics Grid -->
+                    <div class="parameters-grid">
+                        <!-- Overall Health -->
+                        <div class="parameter-card" onclick="location.href='ndvi.html'">
+                            <div class="param-header">
+                                <h3>Vegetation Health</h3>
+                                <div class="param-value good" id="overall-health">78%</div>
+                            </div>
+                            <div class="param-status good">Good</div>
+                            <div class="param-range">
+                                <div class="range-bar">
+                                    <div class="range-fill" style="width: 78%;"></div>
+                                </div>
+                                <div class="range-labels">
+                                    <span>Poor</span>
+                                    <span>Fair</span>
+                                    <span>Excellent</span>
+                                </div>
+                            </div>
+                            <div class="param-desc">Based on latest NDVI scan</div>
+                        </div>
+
+                        <!-- Soil Health -->
+                        <div class="parameter-card" onclick="location.href='soil.html'">
+                            <div class="param-header">
+                                <h3>Soil Health Index</h3>
+                                <div class="param-value moderate">65%</div>
+                            </div>
+                            <div class="param-status moderate">Moderate</div>
+                            <div class="param-range">
+                                <div class="range-bar">
+                                    <div class="range-fill" style="width: 65%;"></div>
+                                </div>
+                                <div class="range-labels">
+                                    <span>Poor</span>
+                                    <span>Fair</span>
+                                    <span>Excellent</span>
+                                </div>
+                            </div>
+                            <div class="param-desc">Nitrogen levels low</div>
+                        </div>
+
+                        <!-- Water Status -->
+                        <div class="parameter-card">
+                            <div class="param-header">
+                                <h3>Irrigation Status</h3>
+                                <div class="param-value good">Optimal</div>
+                            </div>
+                            <div class="param-status good">Good</div>
+                            <div class="param-range">
+                                <div class="range-bar">
+                                    <div class="range-fill" style="width: 82%;"></div>
+                                </div>
+                                <div class="range-labels">
+                                    <span>Dry</span>
+                                    <span>Optimal</span>
+                                    <span>Wet</span>
+                                </div>
+                            </div>
+                            <div class="param-desc">Next irrigation: Tomorrow 6 AM</div>
+                        </div>
+
+                        <!-- Weather Impact -->
+                        <div class="parameter-card">
+                            <div class="param-header">
+                                <h3>Weather Impact</h3>
+                                <div class="param-value good">Low</div>
+                            </div>
+                            <div class="param-status good">Favorable</div>
+                            <div class="param-range">
+                                <div class="range-bar">
+                                    <div class="range-fill" style="width: 25%;"></div>
+                                </div>
+                                <div class="range-labels">
+                                    <span>Low</span>
+                                    <span>Medium</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+                            <div class="param-desc">Sunny, no rain expected</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts & Visualizations -->
+                <section class="charts-section">
+                    <!-- NDVI Trend -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">
+                            <i class="fas fa-chart-line"></i> NDVI Trend (Last 7 Days)
+                        </h3>
+                        <div class="chart" id="ndvi-trend-chart">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-seedling" style="font-size: 48px; color: #0f766e; margin-bottom: 16px;"></i>
+                                <p>NDVI trend visualization</p>
+                                <p class="placeholder-sub">Average: 0.72 | Trend: ↗️ Improving</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soil Moisture Trend -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">
+                            <i class="fas fa-tint"></i> Soil Moisture Trend
+                        </h3>
+                        <div class="chart" id="moisture-trend-chart">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-tint" style="font-size: 48px; color: #0f766e; margin-bottom: 16px;"></i>
+                                <p>Soil moisture levels</p>
+                                <p class="placeholder-sub">Current: 42% | Status: Optimal</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Actions & Alerts -->
+                <section class="charts-section">
+                    <!-- Quick Actions -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">
+                            <i class="fas fa-bolt"></i> Quick Actions
+                        </h3>
+                        <div class="quick-actions-grid">
+                            <button class="action-btn" onclick="location.href='ndvi.html#connect'">
+                                <i class="fas fa-plug"></i>
+                                <span>Connect Drone</span>
+                            </button>
+                            <button class="action-btn" onclick="showNotification('Soil data refresh scheduled', 'info')">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Refresh Soil Data</span>
+                            </button>
+                            <button class="action-btn" onclick="location.href='recommendation.html'">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>View Recommendations</span>
+                            </button>
+                            <button class="action-btn" onclick="showNotification('Report generation started', 'info')">
+                                <i class="fas fa-file-export"></i>
+                                <span>Generate Report</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Alerts -->
+                    <div class="chart-card">
+                        <h3 class="chart-title">
+                            <i class="fas fa-bell"></i> Recent Alerts
+                        </h3>
+                        <div class="alerts-list">
+                            <div class="alert-item warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">Low Nitrogen Level</div>
+                                    <div class="alert-time">2 hours ago</div>
+                                </div>
+                                <button class="alert-action" onclick="location.href='soil.html'">View</button>
+                            </div>
+                            <div class="alert-item info">
+                                <i class="fas fa-info-circle"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">NDVI Scan Completed</div>
+                                    <div class="alert-time">Today 10:30 AM</div>
+                                </div>
+                                <button class="alert-action" onclick="location.href='ndvi.html'">View</button>
+                            </div>
+                            <div class="alert-item success">
+                                <i class="fas fa-check-circle"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">Irrigation System Active</div>
+                                    <div class="alert-time">Currently running</div>
+                                </div>
+                                <button class="alert-action" onclick="showNotification('System details loaded', 'info')">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Footer (Same as other dashboards) -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <i class="fas fa-tractor"></i>
+                        <span>SoCFA SmartFarm System</span>
+                    </div>
+                    <div class="footer-info">
+                        <span>For Farmers | Precision Agriculture</span>
+                    </div>
+                </div>
+                <div class="footer-center">
+                    <div class="system-status">
+                        <span class="status-dot active"></span>
+                        <span>All Systems Operational</span>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <div class="last-update">
+                        Last Update: <span id="last-update-time">Loading...</span>
+                    </div>
+                    <div class="version">v2.1.4</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
