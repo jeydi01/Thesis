@@ -3,25 +3,28 @@ let currentNode = 1;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize components
     updateTime();
+
+    // FORCE ticking every second
+    setInterval(updateTime, 1000);
+
     updateLastUpdateTime();
     generateCharts();
     initEventListeners();
-    
-    // Start live updates
     startLiveUpdates();
 });
+
 
 // Update current time
 function updateTime() {
     const now = new Date();
     const timeString = now.toLocaleTimeString('en-US', {
-        hour12: true,
+        hour12: false,
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
     });
+    
     const dateString = now.toLocaleDateString('en-US', {
         weekday: 'short',
         year: 'numeric',
@@ -29,19 +32,19 @@ function updateTime() {
         day: 'numeric'
     });
     
-    document.getElementById('current-time').textContent = `${dateString} ${timeString}`;
+    document.getElementById('current-time').textContent = timeString + ' | ' + dateString;
 }
 
-// Update last update time
 function updateLastUpdateTime() {
     const now = new Date();
     const timeString = now.toLocaleTimeString('en-US', {
-        hour12: true,
+        hour12: false,
         hour: '2-digit',
         minute: '2-digit'
     });
     document.getElementById('last-update-time').textContent = timeString;
 }
+
 
 // Generate charts
 function generateCharts() {
@@ -402,14 +405,11 @@ function getTimeRangeText(range) {
 
 // Start live updates
 function startLiveUpdates() {
-    // Update time every second
-    setInterval(updateTime, 1000);
-    
     // Update random parameters every 30 seconds
     setInterval(() => {
         updateRandomParameters();
     }, 30000);
-    
+
     // Update weather every 5 minutes
     setInterval(() => {
         updateWeatherData();

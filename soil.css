@@ -200,15 +200,6 @@ body {
     color: #475569;
 }
 
-.node-battery {
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-.node-battery.good {
-    color: #10b981;
-}
-
 /* Navigation Section */
 .nav-menu {
     display: flex;

@@ -14,18 +14,18 @@
         <header class="main-header">
             <div class="header-left">
                 <div class="logo">
-                    <span class="logo-icon"><i class="fas fa-tractor"></i></span>
+                    <span class="logo-icon"><i class="fas fa-seedling"></i></span>
                     <span class="logo-text">SoCFA</span>
                 </div>
                 <div class="tagline">For Farmers</div>
             </div>
             <div class="header-center">
-                <h1>SmartFarm Dashboard</h1>
+                <h1>Dashboard</h1>
             </div>
             <div class="header-right">
                 <div class="current-time" id="current-time">Loading...</div>
                 <button class="refresh-btn" id="refresh-all">
-                    <i class="fas fa-sync-alt"></i> Refresh All
+                    <i class="fas fa-sync-alt"></i> Refresh
                 </button>
             </div>
         </header>
@@ -58,39 +58,7 @@
                     </nav>
                 </div>
 
-                <!-- Quick Farm Info -->
-                <div class="weather-section">
-                    <h3 class="sidebar-title">
-                        <i class="fas fa-info-circle"></i> Farm Summary
-                    </h3>
-                    <div class="weather-card" style="background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);">
-                        <div class="weather-icon">
-                            <i class="fas fa-farm"></i>
-                        </div>
-                        <div class="weather-info">
-                            <div class="weather-temp" id="farm-size">25.3 ha</div>
-                            <div class="weather-desc">Total Farm Area</div>
-                            <div class="weather-humidity">Active Fields: 3/4</div>
-                        </div>
-                    </div>
-                    <div class="weather-forecast">
-                        <div class="forecast-day">
-                            <span>Last NDVI Scan</span>
-                            <i class="fas fa-calendar"></i>
-                            <span id="last-ndvi-scan">Today</span>
-                        </div>
-                        <div class="forecast-day">
-                            <span>Soil Last Check</span>
-                            <i class="fas fa-clock"></i>
-                            <span id="last-soil-check">2h ago</span>
-                        </div>
-                        <div class="forecast-day">
-                            <span>System Uptime</span>
-                            <i class="fas fa-server"></i>
-                            <span id="system-uptime">99.8%</span>
-                        </div>
-                    </div>
-                </div>
+                
             </aside>
 
             <!-- Main Dashboard Panel -->
@@ -101,14 +69,18 @@
                         <h2 class="section-title">
                             <i class="fas fa-chart-pie"></i> Farm Overview
                         </h2>
-                        <div class="time-filter">
-                            <span class="filter-label">View:</span>
-                            <select id="dashboard-view">
-                                <option value="today">Today</option>
-                                <option value="week">This Week</option>
-                                <option value="month">This Month</option>
-                            </select>
-                        </div>
+                        <div class="dashboard-controls">
+<div class="dashboard-view-inline">
+    <span class="filter-label">View:</span>
+    <select id="dashboard-view">
+        <option value="today">Today</option>
+        <option value="week">This Week</option>
+        <option value="month">This Month</option>
+    </select>
+</div>
+
+</div>
+
                     </div>
 
                     <!-- Key Metrics Grid -->
@@ -153,46 +125,46 @@
                             <div class="param-desc">Nitrogen levels low</div>
                         </div>
 
-                        <!-- Water Status -->
-                        <div class="parameter-card">
-                            <div class="param-header">
-                                <h3>Irrigation Status</h3>
-                                <div class="param-value good">Optimal</div>
-                            </div>
-                            <div class="param-status good">Good</div>
-                            <div class="param-range">
-                                <div class="range-bar">
-                                    <div class="range-fill" style="width: 82%;"></div>
-                                </div>
-                                <div class="range-labels">
-                                    <span>Dry</span>
-                                    <span>Optimal</span>
-                                    <span>Wet</span>
-                                </div>
-                            </div>
-                            <div class="param-desc">Next irrigation: Tomorrow 6 AM</div>
-                        </div>
+                        <!-- Soil Sensor Status -->
+<div class="parameter-card" onclick="location.href='soil.html'">
+    <div class="param-header">
+        <h3>Soil Sensor Status</h3>
+        <div class="param-value good" id="sensor-status">Online</div>
+    </div>
+    <div class="param-status good">Active</div>
+    <div class="param-range">
+        <div class="range-bar">
+            <div class="range-fill" style="width: 100%;"></div>
+        </div>
+        <div class="range-labels">
+            <span>Offline</span>
+            <span>Online</span>
+            <span>Stable</span>
+        </div>
+    </div>
+    <div class="param-desc">Last reading: <span id="last-sensor-reading">2 minutes ago</span></div>
+</div>
 
-                        <!-- Weather Impact -->
-                        <div class="parameter-card">
-                            <div class="param-header">
-                                <h3>Weather Impact</h3>
-                                <div class="param-value good">Low</div>
-                            </div>
-                            <div class="param-status good">Favorable</div>
-                            <div class="param-range">
-                                <div class="range-bar">
-                                    <div class="range-fill" style="width: 25%;"></div>
-                                </div>
-                                <div class="range-labels">
-                                    <span>Low</span>
-                                    <span>Medium</span>
-                                    <span>High</span>
-                                </div>
-                            </div>
-                            <div class="param-desc">Sunny, no rain expected</div>
-                        </div>
-                    </div>
+
+                        <!-- Node Connectivity -->
+<div class="parameter-card">
+    <div class="param-header">
+        <h3>Node Connectivity</h3>
+        <div class="param-value good" id="node-status">Connected</div>
+    </div>
+    <div class="param-status good">Stable</div>
+    <div class="param-range">
+        <div class="range-bar">
+            <div class="range-fill" style="width: 90%;"></div>
+        </div>
+        <div class="range-labels">
+            <span>Disconnected</span>
+            <span>Connected</span>
+            <span>Strong</span>
+        </div>
+    </div>
+    <div class="param-desc">Active nodes: <span id="active-nodes">3</span>/4</div>
+</div>
                 </section>
 
                 <!-- Charts & Visualizations -->
@@ -252,39 +224,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- Recent Alerts -->
-                    <div class="chart-card">
-                        <h3 class="chart-title">
-                            <i class="fas fa-bell"></i> Recent Alerts
-                        </h3>
-                        <div class="alerts-list">
-                            <div class="alert-item warning">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <div class="alert-content">
-                                    <div class="alert-title">Low Nitrogen Level</div>
-                                    <div class="alert-time">2 hours ago</div>
-                                </div>
-                                <button class="alert-action" onclick="location.href='soil.html'">View</button>
-                            </div>
-                            <div class="alert-item info">
-                                <i class="fas fa-info-circle"></i>
-                                <div class="alert-content">
-                                    <div class="alert-title">NDVI Scan Completed</div>
-                                    <div class="alert-time">Today 10:30 AM</div>
-                                </div>
-                                <button class="alert-action" onclick="location.href='ndvi.html'">View</button>
-                            </div>
-                            <div class="alert-item success">
-                                <i class="fas fa-check-circle"></i>
-                                <div class="alert-content">
-                                    <div class="alert-title">Irrigation System Active</div>
-                                    <div class="alert-time">Currently running</div>
-                                </div>
-                                <button class="alert-action" onclick="showNotification('System details loaded', 'info')">Details</button>
-                            </div>
-                        </div>
-                    </div>
                 </section>
             </main>
         </div>
@@ -294,8 +233,8 @@
             <div class="footer-content">
                 <div class="footer-left">
                     <div class="footer-logo">
-                        <i class="fas fa-tractor"></i>
-                        <span>SoCFA SmartFarm System</span>
+                        <i class="fas fa-seedling"></i>
+                        <span>SoCFA System</span>
                     </div>
                     <div class="footer-info">
                         <span>For Farmers | Precision Agriculture</span>
