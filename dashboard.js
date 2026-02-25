@@ -16,11 +16,10 @@ function initDashboard() {
     updateNavigation();
     
     // Initialize values
-updateValue('sensor-status', 'Online');
-updateValue('last-sensor-reading', '2 minutes ago');
-updateValue('node-status', 'Connected');
-updateValue('active-nodes', '3');
-
+    updateValue('sensor-status', 'Online');
+    updateValue('last-sensor-reading', '2 minutes ago');
+    updateValue('node-status', 'Connected');
+    updateValue('active-nodes', '3');
     
     // Update last update time
     updateLastUpdateTime();
@@ -32,10 +31,7 @@ function setupEventListeners() {
     // Refresh all button
     document.getElementById('refresh-all').addEventListener('click', refreshAllData);
     
-    // Dashboard view change
-    document.getElementById('dashboard-view').addEventListener('change', function() {
-        changeDashboardView(this.value);
-    });
+    // Removed: Dashboard view change event listener
     
     // Quick action buttons
     document.querySelectorAll('.action-btn').forEach(btn => {
@@ -69,32 +65,13 @@ function refreshAllData() {
     
     // Simulate data refresh
     setTimeout(() => {
-        updateValue('last-ndvi-scan', 'Just now');
-        updateValue('last-soil-check', 'Just now');
-        updateValue('overall-health', (75 + Math.random() * 5).toFixed(0) + '%');
+        // Removed: updateValue('overall-health', (75 + Math.random() * 5).toFixed(0) + '%');
         updateLastUpdateTime();
         showNotification('All data refreshed successfully', 'success');
     }, 1500);
 }
 
-function changeDashboardView(view) {
-    console.log('Changing dashboard view to:', view);
-    
-    let message = '';
-    switch(view) {
-        case 'today':
-            message = 'Showing today\'s data';
-            break;
-        case 'week':
-            message = 'Showing weekly overview';
-            break;
-        case 'month':
-            message = 'Showing monthly trends';
-            break;
-    }
-    
-    showNotification(message, 'info');
-}
+// Removed: changeDashboardView() function
 
 function updateTime() {
     const now = new Date();

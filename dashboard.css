@@ -848,3 +848,49 @@ body {
     box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.15);
 }
 
+/* Make the 2 cards wider since there are only 2 */
+.parameters-grid {
+    grid-template-columns: repeat(2, 1fr); /* Changed from 4 to 2 */
+    gap: 30px; /* Increased gap for better spacing */
+}
+
+/* Make cards larger when there are only 2 */
+.parameter-card {
+    min-height: 260px; /* Slightly taller for better visual balance */
+}
+
+/* Center the 2 quick action buttons */
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+    justify-items: center; /* Center the buttons */
+}
+
+/* Make quick action buttons larger since there are only 2 */
+.quick-actions-grid .action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 25px 20px; /* Increased padding */
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    color: #4a5568;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 200px; /* Limit maximum width */
+}
+
+.quick-actions-grid .action-btn i {
+    font-size: 28px; /* Larger icon */
+}
+
+.quick-actions-grid .action-btn span {
+    font-size: 1rem; /* Slightly larger text */
+    text-align: center;
+}

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Dashboard - SoCFA</title>
-    <link rel="stylesheet" href="dashboard.css"> <!-- Use same CSS -->
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="desktop-container">
-        <!-- Header (Same as other dashboards) -->
+        <!-- Header -->
         <header class="main-header">
             <div class="header-left">
                 <div class="logo">
@@ -51,14 +51,8 @@
                             <i class="fas fa-seedling"></i>
                             <span>Soil Condition</span>
                         </a>
-                        <a href="recommendation.html" class="nav-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Recommendations</span>
-                        </a>
                     </nav>
                 </div>
-
-                
             </aside>
 
             <!-- Main Dashboard Panel -->
@@ -67,104 +61,79 @@
                 <section class="parameters-section">
                     <div class="section-header">
                         <h2 class="section-title">
-                            <i class="fas fa-chart-pie"></i> Farm Overview
+                            <i class="fas fa-chart-pie"></i> System Status
                         </h2>
-                        <div class="dashboard-controls">
-<div class="dashboard-view-inline">
-    <span class="filter-label">View:</span>
-    <select id="dashboard-view">
-        <option value="today">Today</option>
-        <option value="week">This Week</option>
-        <option value="month">This Month</option>
-    </select>
-</div>
-
-</div>
-
+                        <!-- Removed the entire dashboard-controls div -->
                     </div>
 
-                    <!-- Key Metrics Grid -->
+                    <!-- Key Metrics Grid - Only 2 cards now -->
                     <div class="parameters-grid">
-                        <!-- Overall Health -->
-                        <div class="parameter-card" onclick="location.href='ndvi.html'">
-                            <div class="param-header">
-                                <h3>Vegetation Health</h3>
-                                <div class="param-value good" id="overall-health">78%</div>
-                            </div>
-                            <div class="param-status good">Good</div>
-                            <div class="param-range">
-                                <div class="range-bar">
-                                    <div class="range-fill" style="width: 78%;"></div>
-                                </div>
-                                <div class="range-labels">
-                                    <span>Poor</span>
-                                    <span>Fair</span>
-                                    <span>Excellent</span>
-                                </div>
-                            </div>
-                            <div class="param-desc">Based on latest NDVI scan</div>
-                        </div>
-
-                        <!-- Soil Health -->
+                        <!-- Soil Sensor Status -->
                         <div class="parameter-card" onclick="location.href='soil.html'">
                             <div class="param-header">
-                                <h3>Soil Health Index</h3>
-                                <div class="param-value moderate">65%</div>
+                                <h3>Soil Sensor Status</h3>
+                                <div class="param-value good" id="sensor-status">All Online</div>
                             </div>
-                            <div class="param-status moderate">Moderate</div>
-                            <div class="param-range">
-                                <div class="range-bar">
-                                    <div class="range-fill" style="width: 65%;"></div>
+                            <div class="param-status good">Active</div>
+                            <div class="node-list">
+                                <div class="node-item">
+                                    <div class="node-info">
+                                        <div class="node-status active"></div>
+                                        <span class="node-name">Sensor Node 1</span>
+                                    </div>
+                                    <span class="node-status-text good">Online</span>
                                 </div>
-                                <div class="range-labels">
-                                    <span>Poor</span>
-                                    <span>Fair</span>
-                                    <span>Excellent</span>
+                                <div class="node-item">
+                                    <div class="node-info">
+                                        <div class="node-status active"></div>
+                                        <span class="node-name">Sensor Node 2</span>
+                                    </div>
+                                    <span class="node-status-text good">Online</span>
+                                </div>
+                                <div class="node-item">
+                                    <div class="node-info">
+                                        <div class="node-status active"></div>
+                                        <span class="node-name">Sensor Node 3</span>
+                                    </div>
+                                    <span class="node-status-text good">Online</span>
                                 </div>
                             </div>
-                            <div class="param-desc">Nitrogen levels low</div>
+                            <div class="param-desc">Last reading: <span id="last-sensor-reading">2 minutes ago</span></div>
                         </div>
 
-                        <!-- Soil Sensor Status -->
-<div class="parameter-card" onclick="location.href='soil.html'">
-    <div class="param-header">
-        <h3>Soil Sensor Status</h3>
-        <div class="param-value good" id="sensor-status">Online</div>
-    </div>
-    <div class="param-status good">Active</div>
-    <div class="param-range">
-        <div class="range-bar">
-            <div class="range-fill" style="width: 100%;"></div>
-        </div>
-        <div class="range-labels">
-            <span>Offline</span>
-            <span>Online</span>
-            <span>Stable</span>
-        </div>
-    </div>
-    <div class="param-desc">Last reading: <span id="last-sensor-reading">2 minutes ago</span></div>
-</div>
-
-
                         <!-- Node Connectivity -->
-<div class="parameter-card">
-    <div class="param-header">
-        <h3>Node Connectivity</h3>
-        <div class="param-value good" id="node-status">Connected</div>
-    </div>
-    <div class="param-status good">Stable</div>
-    <div class="param-range">
-        <div class="range-bar">
-            <div class="range-fill" style="width: 90%;"></div>
-        </div>
-        <div class="range-labels">
-            <span>Disconnected</span>
-            <span>Connected</span>
-            <span>Strong</span>
-        </div>
-    </div>
-    <div class="param-desc">Active nodes: <span id="active-nodes">3</span>/4</div>
-</div>
+                        <div class="parameter-card">
+                            <div class="param-header">
+                                <h3>Node Connectivity</h3>
+                                <div class="param-value good" id="node-status">Connected</div>
+                            </div>
+                            <div class="param-status good">Stable</div>
+                            <div class="node-list">
+                                <div class="node-item">
+                                    <div class="node-info">
+                                        <div class="node-status active"></div>
+                                        <span class="node-name">Gateway Node</span>
+                                    </div>
+                                    <span class="node-status-text good">Connected</span>
+                                </div>
+                                <div class="node-item">
+                                    <div class="node-info">
+                                        <div class="node-status active"></div>
+                                        <span class="node-name">Field Node A</span>
+                                    </div>
+                                    <span class="node-status-text good">Connected</span>
+                                </div>
+                                <div class="node-item">
+                                    <div class="node-info">
+                                        <div class="node-status active"></div>
+                                        <span class="node-name">Field Node B</span>
+                                    </div>
+                                    <span class="node-status-text good">Connected</span>
+                                </div>
+                            </div>
+                            <div class="param-desc">Active nodes: <span id="active-nodes">3</span>/3</div>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Charts & Visualizations -->
@@ -183,24 +152,7 @@
                         </div>
                     </div>
 
-                    <!-- Soil Moisture Trend -->
-                    <div class="chart-card">
-                        <h3 class="chart-title">
-                            <i class="fas fa-tint"></i> Soil Moisture Trend
-                        </h3>
-                        <div class="chart" id="moisture-trend-chart">
-                            <div class="chart-placeholder">
-                                <i class="fas fa-tint" style="font-size: 48px; color: #0f766e; margin-bottom: 16px;"></i>
-                                <p>Soil moisture levels</p>
-                                <p class="placeholder-sub">Current: 42% | Status: Optimal</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Quick Actions & Alerts -->
-                <section class="charts-section">
-                    <!-- Quick Actions -->
+                    <!-- Quick Actions - Only 2 buttons now -->
                     <div class="chart-card">
                         <h3 class="chart-title">
                             <i class="fas fa-bolt"></i> Quick Actions
@@ -214,21 +166,22 @@
                                 <i class="fas fa-sync-alt"></i>
                                 <span>Refresh Soil Data</span>
                             </button>
-                            <button class="action-btn" onclick="location.href='recommendation.html'">
-                                <i class="fas fa-lightbulb"></i>
-                                <span>View Recommendations</span>
-                            </button>
-                            <button class="action-btn" onclick="showNotification('Report generation started', 'info')">
-                                <i class="fas fa-file-export"></i>
-                                <span>Generate Report</span>
-                            </button>
+                        </div>
+                        <div class="alerts-list" style="margin-top: 20px;">
+                            <div class="alert-item info">
+                                <i class="fas fa-info-circle"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">All systems operational</div>
+                                    <div class="alert-time">Just now</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
             </main>
         </div>
 
-        <!-- Footer (Same as other dashboards) -->
+        <!-- Footer -->
         <footer class="main-footer">
             <div class="footer-content">
                 <div class="footer-left">
